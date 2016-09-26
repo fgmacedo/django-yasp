@@ -22,14 +22,53 @@ Install django-staticpages::
 
     pip install django-staticpages
 
-Then use it in a project::
+Include it on INSTALLED_APPS::
 
-    import staticpages
+    'staticpages',
+
+Add to urls::
+
+    url(r'^(?P<menu_slug>[\w\-]+)/', include('staticpages.urls', namespace='staticpages')),
+
+Then use it in a template.
+
+To load all pages inside a menu:
+
+.. code-block:: django
+
+    {% load staticpages_tags %}
+
+    {% get_pages_from_menu 'about-us' as about_us_pages %}
+
+    {% for i in about_us_pages %}
+        Title: {{i.title}}
+        ...
+    {% endfor%}
+
+To get a specific page:
+
+.. code-block:: django
+
+    {% load staticpages_tags %}
+
+    {% get_page 'about-us/vision' as vision %}
+    Title: {{vision.title}}
+
+To get a URL to a specific page:
+
+.. code-block:: django
+
+    {% load staticpages_tags %}
+
+    <a href="{% get_page_url 'about-us/vision' %}">Our vision</a>
+
 
 Features
 --------
 
-* TODO
+* Build menus from static pages.
+* Get a page from his slug.
+* Redirect to a link.
 
 Running Tests
 --------------
@@ -41,14 +80,3 @@ Does the code actually work?
     source <YOURVIRTUALENV>/bin/activate
     (myenv) $ pip install -r requirements_test.txt
     (myenv) $ python runtests.py
-
-Credits
----------
-
-Tools used in rendering this package:
-
-*  Cookiecutter_
-*  `cookiecutter-djangopackage`_
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage
