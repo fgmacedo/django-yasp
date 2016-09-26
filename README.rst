@@ -26,9 +26,21 @@ Include it on INSTALLED_APPS::
 
     'staticpages',
 
-Add to urls::
+Add to urls:
+
+.. code-block:: python
 
     url(r'^(?P<menu_slug>[\w\-]+)/', include('staticpages.urls', namespace='staticpages')),
+
+Add to middlewares:
+
+.. code-block:: python
+
+    MIDDLEWARE_CLASSES = [
+        ...
+        'staticpages.middleware.StaticPageFallbackMiddleware',
+    ]
+
 
 Then use it in a template.
 

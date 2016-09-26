@@ -3,9 +3,23 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.utils.html import format_html
 
-from adminsortable2.admin import SortableAdminMixin
+try:
+    from adminsortable2.admin import SortableAdminMixin
+except:
+    class SortableAdminMixin(object):
+        pass
 
-from core.admin import EditableTextAreaMixin
+try:
+    from core.admin import EditableTextAreaMixin
+except:
+    class EditableTextAreaMixin(object):
+        # TODO: Configure extra media to enable html editing.
+        class Media:
+            js = [
+                '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
+                '/static/admin/js/tinymce_setup.js',
+            ]
+
 from .models import Menu, FlatPage
 
 

@@ -42,16 +42,23 @@ def get_page(slug):
         ...
     """
     slugs = slug.split('/')
-    if len(slugs) != 2:
-        raise ValueError('Param must be "menu-slug/page-slug. Invalid: {}'.format(slug))
+    if len(slugs) not in [1, 2]:
+        raise ValueError('Param must be "menu-slug/page-slug" or "page-slug". Invalid: {}'.format(slug))
 
-    menu_slug, page_slug = slugs
+    if len(slugs) == 2:
+        menu_slug, page_slug = slugs
+    else:
+        menu_slug, page_slug = None, slugs[0]
+
     page = FlatPage.objects.select_related('menu') \
         .filter(menu__slug=menu_slug, slug=page_slug, ) \
         .first()
 
     if not page:
-        menu, created = Menu.objects.get_or_create(slug=menu_slug, defaults={'name': menu_slug})
+        if menu_slug:
+            menu, created = Menu.objects.get_or_create(slug=menu_slug, defaults={'name': menu_slug})
+        else:
+            menu = None
         page, created = FlatPage.objects.get_or_create(
             menu=menu,
             slug=page_slug,

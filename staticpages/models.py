@@ -28,11 +28,15 @@ class FlatPageQuerySet(models.QuerySet):
 
 
 class FlatPage(models.Model):
-    menu = models.ForeignKey(Menu, verbose_name=_('menu'))
+    menu = models.ForeignKey(
+        Menu,
+        verbose_name=_('menu'),
+        related_name='pages',
+        blank=True, null=True)
     title = models.CharField(_('title'), max_length=255)
     slug = models.SlugField(_('slug'), max_length=255)
 
-    teaser = models.CharField(_('teaser'), max_length=140, blank=True)
+    teaser = models.TextField(_('teaser'), blank=True)
     content = models.TextField(_('content'), blank=True)
     template_name = models.CharField(
         _('template name'),
@@ -72,7 +76,8 @@ class FlatPage(models.Model):
     def get_absolute_url(self):
         if self.link:
             return self.link
-        return reverse('staticpages:page', args=[self.menu.slug, self.slug])
+        menu_slug = self.menu.slug if self.menu else ''
+        return reverse('staticpages:page', args=[menu_slug, self.slug])
 
     @property
     def description(self):
