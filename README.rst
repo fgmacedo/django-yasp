@@ -30,7 +30,7 @@ Add to urls:
 
 .. code-block:: python
 
-    url(r'^(?P<menu_slug>[\w\-]+)/', include('staticpages.urls', namespace='staticpages')),
+    url(r'^', include('staticpages.urls', namespace='staticpages')),
 
 Add to middlewares:
 
