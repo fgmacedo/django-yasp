@@ -3,7 +3,7 @@ Contributing
 ============
 
 Contributions are welcome, and they are greatly appreciated! Every
-little bit helps, and credit will always be given. 
+little bit helps, and credit will always be given.
 
 You can contribute in many ways:
 
@@ -13,7 +13,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/fgmacedo/django-staticpages/issues.
+Report bugs at https://github.com/fgmacedo/django-yasp/issues.
 
 If you are reporting a bug, please include:
 
@@ -36,14 +36,14 @@ is open to whoever wants to implement it.
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-django-staticpages could always use more documentation, whether as part of the 
-official django-staticpages docs, in docstrings, or even on the web in blog posts,
+django-yasp could always use more documentation, whether as part of the
+official django-yasp docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://github.com/fgmacedo/django-staticpages/issues.
+The best way to send feedback is to file an issue at https://github.com/fgmacedo/django-yasp/issues.
 
 If you are proposing a feature:
 
@@ -55,17 +55,17 @@ If you are proposing a feature:
 Get Started!
 ------------
 
-Ready to contribute? Here's how to set up `django-staticpages` for local development.
+Ready to contribute? Here's how to set up `django-yasp` for local development.
 
-1. Fork the `django-staticpages` repo on GitHub.
+1. Fork the `django-yasp` repo on GitHub.
 2. Clone your fork locally::
 
-    $ git clone git@github.com:your_name_here/django-staticpages.git
+    $ git clone git@github.com:your_name_here/django-yasp.git
 
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 
-    $ mkvirtualenv django-staticpages
-    $ cd django-staticpages/
+    $ mkvirtualenv django-yasp
+    $ cd django-yasp/
     $ python setup.py develop
 
 4. Create a branch for local development::
@@ -77,11 +77,11 @@ Ready to contribute? Here's how to set up `django-staticpages` for local develop
 5. When you're done making changes, check that your changes pass flake8 and the
    tests, including testing other Python versions with tox::
 
-        $ flake8 staticpages tests
+        $ flake8 yasp tests
         $ python setup.py test
         $ tox
 
-   To get flake8 and tox, just pip install them into your virtualenv. 
+   To get flake8 and tox, just pip install them into your virtualenv.
 
 6. Commit your changes and push your branch to GitHub::
 
@@ -100,8 +100,8 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python 2.6, 2.7, and 3.3, and for PyPy. Check 
-   https://travis-ci.org/fgmacedo/django-staticpages/pull_requests
+3. The pull request should work for Python 2.6, 2.7, and 3.3, and for PyPy. Check
+   https://travis-ci.org/fgmacedo/django-yasp/pull_requests
    and make sure that the tests pass for all supported Python versions.
 
 Tips
@@ -109,4 +109,4 @@ Tips
 
 To run a subset of tests::
 
-    $ python -m unittest tests.test_staticpages
+    $ python -m unittest tests.test_yasp

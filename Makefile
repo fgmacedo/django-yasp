@@ -28,7 +28,7 @@ clean-pyc: ## remove Python file artifacts
 	find . -name '*~' -exec rm -f {} +
 
 lint: ## check style with flake8
-	flake8 staticpages tests
+	flake8 yasp tests
 
 test: ## run tests quickly with the default Python
 	python runtests.py tests
@@ -37,15 +37,15 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source staticpages runtests.py tests
+	coverage run --source yasp runtests.py tests
 	coverage report -m
 	coverage html
 	open htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/django-staticpages.rst
+	rm -f docs/django-yasp.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ staticpages
+	sphinx-apidoc -o docs/ yasp
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html

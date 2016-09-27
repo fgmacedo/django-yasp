@@ -4,9 +4,9 @@ Installation
 
 At the command line::
 
-    $ easy_install django-staticpages
+    $ easy_install django-yasp
 
 Or, if you have virtualenvwrapper installed::
 
-    $ mkvirtualenv django-staticpages
-    $ pip install django-staticpages
+    $ mkvirtualenv django-yasp
+    $ pip install django-yasp

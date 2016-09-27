@@ -8,7 +8,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-version = '0.1.0'
+version = '0.4.0'
 
 if sys.argv[-1] == 'publish':
     try:
@@ -31,21 +31,21 @@ readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
-    name='django-staticpages',
+    name='django-yasp',
     version=version,
-    description="""Another static page Django app.""",
+    description="""Yet Another Static Page Django app.""",
     long_description=readme + '\n\n' + history,
     author='Fernando Macedo',
     author_email='fgmacedo@gmail.com',
-    url='https://github.com/fgmacedo/django-staticpages',
+    url='https://github.com/fgmacedo/django-yasp',
     packages=[
-        'staticpages',
+        'yasp',
     ],
     include_package_data=True,
     install_requires=[],
     license="MIT",
     zip_safe=False,
-    keywords='django-staticpages',
+    keywords='django-yasp',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Framework :: Django',

@@ -1,35 +1,167 @@
-=============================
-django-staticpages
-=============================
+===========
+django-yasp
+===========
 
-.. image:: https://badge.fury.io/py/django-staticpages.png
-    :target: https://badge.fury.io/py/django-staticpages
+.. image:: https://badge.fury.io/py/django-yasp.png
+    :target: https://badge.fury.io/py/django-yasp
 
-.. image:: https://travis-ci.org/fgmacedo/django-staticpages.png?branch=master
-    :target: https://travis-ci.org/fgmacedo/django-staticpages
+.. image:: https://travis-ci.org/fgmacedo/django-yasp.png?branch=master
+    :target: https://travis-ci.org/fgmacedo/django-yasp
 
 Another static page Django app.
 
 Documentation
 -------------
 
-The full documentation is at https://django-staticpages.readthedocs.org.
+The full documentation is at https://django-yasp.readthedocs.org.
 
 Quickstart
 ----------
 
-Install django-staticpages::
+Install django-yasp::
 
-    pip install django-staticpages
+    pip install django-yasp
 
-Then use it in a project::
+Include it on INSTALLED_APPS::
 
-    import staticpages
+    'yasp',
+
+Add to urls:
+
+.. code-block:: python
+
+    url(r'^', include('yasp.urls', namespace='yasp')),
+
+Add to middlewares:
+
+.. code-block:: python
+
+    MIDDLEWARE_CLASSES = [
+        ...
+        'yasp.middleware.StaticPageFallbackMiddleware',
+    ]
+
 
 Features
 --------
 
-* TODO
+Link to static pages
+====================
+
+Static pages in **yasp** are automatic routed to a slug that you specify when
+creating your page. Your static pages can be grouped in a `Menu`_ object. So
+your urls can be in the form `menu-slug/page-slug` or `page-slug` (pages
+without a relation to `Menu`_.
+
+To create a link to static pages, there are some useful templatetags, as follows.
+
+.. note::
+
+    All menus/pages that are used in a templatetag will be automatically
+    created if they don't exist.
+
+
+To load all pages inside a menu:
+
+.. code-block:: django
+
+    {% load yasp %}
+
+    {% get_pages_from_menu 'about-us' as pages %}
+
+    <ul>
+      {% for page in pages %}
+        <li><a href="{{page.get_absolute_url}}">{{page.title}}</a></li>
+      {% endfor %}
+    </ul>
+
+
+To get a specific page:
+
+.. code-block:: django
+
+    {% load yasp %}
+
+    {% get_page 'about-us/vision' as page %} {# Page 'vision' related to a menu 'about-us' #}
+    <a href="{{page.get_absolute_url}}">{{page.title}}</a>
+
+    {% get_page 'contact' as page %} {# Page without a menu. #}
+    <a href="{{page.get_absolute_url}}">{{page.title}}</a>
+
+To get a URL to a specific page:
+
+.. code-block:: django
+
+    {% load yasp %}
+
+    <a href="{% get_page_url 'about-us/vision' %}">Our vision</a>
+
+
+Custom templates
+================
+
+Static pages will be rendered using the `yasp/default.html` template by
+default.
+
+You can customize the template used to render a page by placing a template with
+the same slug of the page, or directly on the `template` field on Admin.
+
+Template path resolution order:
+
+    * The "Template" field of your page, if provided.
+    * 'yasp/{menu_slug}/{page_slug}.html'
+    * 'yasp/{}.html'.format(page_slug)
+    * 'yasp/default.html'
+
+
+Context of a static page template:
+
+    :menu:  The `Menu`_ object.
+    :content: The `FlatPage`_ object.
+    :object: Alias to `content`.
+
+
+External link
+=============
+
+You can use a static page instance to link to an external page.
+
+Example:
+
+    >>> from yasp.models import Menu, FlatPage
+    >>> menu = Menu.objects.create(name='About us', slug='about-us')
+    >>> page = FlatPage.objects.create(menu=menu, slug='google', link='http://google.com', title='Google')
+    >>> '<a href="{}">{}</a>'.format(page.get_absolute_url(), page.title)
+    '<a href="http://google.com">Google Inc.</a>'
+    >>> vision = FlatPage.objects.create(menu=menu, slug='vision', title='Vision')
+    >>> '<a href="{}">{}</a>'.format(vision.get_absolute_url(), vision.title)
+    '<a href="/about-us/vision">Vision</a>'
+
+This construction is can be specially useful when you're build a navbar in
+templates:
+
+.. code-block:: django
+
+    {% load yasp %}
+    {% get_pages_from_menu 'about-us' as pages %}
+
+    <ul>
+      {% for page in pages %}
+        <li><a href="{{page.get_absolute_url}}">{{page.title}}</a></li>
+      {% endfor %}
+    </ul>
+
+
+Will render as:
+
+.. code-block:: html
+
+    <ul>
+        <li><a href="http://google.com">Google</a></li>
+        <li><a href="/about-us/vision">Vision</a></li>
+    </ul>
+
+
 
 Running Tests
 --------------
@@ -40,15 +172,4 @@ Does the code actually work?
 
     source <YOURVIRTUALENV>/bin/activate
     (myenv) $ pip install -r requirements_test.txt
-    (myenv) $ python runtests.py
-
-Credits
----------
-
-Tools used in rendering this package:
-
-*  Cookiecutter_
-*  `cookiecutter-djangopackage`_
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage
+    (myenv) $ py.test

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load yasp %}
+
+{% block content %}
+    <article class="article-fixed">
+  {% if content.image %}
+    <header class="news-header" style="background-image: url('{{ content.image.url }}')">
+  {% else %}
+    <header class="news-header" style="background-image: url('http://placehold.it/1400x500')">
+  {% endif %}
+
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="title-div">
+            <h1 class="title">{{content.title}}</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="body article-normal">
+            <p class="teaser">{{content.teaser}}</p>
+            {{content.content|safe}}
+            {% block inner-content %}
+            {% endblock %}
+          </div>
+        </div>
+        <div class="col-md-4 hidden-sm hidden-xs">
+          {% block sidebar %}
+          <div class="category-list">
+            {% get_pages_from_menu content.menu.slug as pages %}
+            <ul class="nav">
+              {% for page in pages %}
+              <li {% if content.id == page.id %}class="active"{% endif %}><a href="{{page.get_absolute_url}}" {% if content.id == page.id %}class="active-primary"{% endif %}>{{page.title}}</a>
+                {% if content.id == page.id %}
+                <ul class="list-unstyled"></ul>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endblock sidebar %}
+        </div>
+      </div>
+    </div>
+  </article>
+{% endblock content %}
