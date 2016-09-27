@@ -6,7 +6,27 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 
-from filebrowser.fields import FileBrowseField
+
+def get_image_field(verbose_name, max_length=250):
+    "Try to use FileBrowseField, with ImageField as fallback"
+    try:
+        from filebrowser.fields import FileBrowseField
+        return FileBrowseField(
+            verbose_name,
+            max_length=max_length,
+            directory='flatpages',
+            extensions=['.jpg', '.png'],
+            blank=True,
+            null=True,
+        )
+    except:
+        return models.ImageField(
+            verbose_name,
+            max_length=max_length,
+            upload_to='flatpages/',
+            blank=True,
+            null=True,
+        )
 
 
 class Menu(models.Model):
@@ -47,14 +67,7 @@ class FlatPage(models.Model):
             "the system will use 'staticpages/default.html'."
         ),
     )
-    image = FileBrowseField(
-        _('image'),
-        max_length=250,
-        directory='flatpages',
-        extensions=['.jpg', '.png'],
-        blank=True,
-        null=True,
-    )
+    image = get_image_field(_('image'))
     link = models.CharField(_('link'), max_length=200, blank=True)
 
     active = models.BooleanField(_('active'), default=True)
