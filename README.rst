@@ -1,38 +1,36 @@
 =============================
-django-staticpages
+django-yasp
 =============================
 
-.. image:: https://badge.fury.io/py/django-staticpages.png
-    :target: https://badge.fury.io/py/django-staticpages
+.. image:: https://badge.fury.io/py/django-yasp.png
+    :target: https://badge.fury.io/py/django-yasp
 
-.. image:: https://travis-ci.org/fgmacedo/django-staticpages.png?branch=master
-    :target: https://travis-ci.org/fgmacedo/django-staticpages
+.. image:: https://travis-ci.org/fgmacedo/django-yasp.png?branch=master
+    :target: https://travis-ci.org/fgmacedo/django-yasp
 
 Another static page Django app.
 
 Documentation
 -------------
 
-The full documentation is at https://django-staticpages.readthedocs.org.
+The full documentation is at https://django-yasp.readthedocs.org.
 
 Quickstart
 ----------
 
-.. pip install django-staticpages
+Install django-yasp::
 
-Install django-staticpages::
-
-    pip install -e git://github.com/fgmacedo/django-staticpages.git@v0.2.0#egg=django-staticpages
+    pip install -e git://github.com/fgmacedo/django-yasp.git@v0.2.0#egg=django-yasp
 
 Include it on INSTALLED_APPS::
 
-    'staticpages',
+    'yasp',
 
 Add to urls:
 
 .. code-block:: python
 
-    url(r'^', include('staticpages.urls', namespace='staticpages')),
+    url(r'^', include('yasp.urls', namespace='yasp')),
 
 Add to middlewares:
 
@@ -40,9 +38,11 @@ Add to middlewares:
 
     MIDDLEWARE_CLASSES = [
         ...
-        'staticpages.middleware.StaticPageFallbackMiddleware',
+        'yasp.middleware.StaticPageFallbackMiddleware',
     ]
 
+
+From now on, each page that you create on Admin will be acce
 
 Then use it in a template.
 
@@ -50,7 +50,7 @@ To load all pages inside a menu:
 
 .. code-block:: django
 
-    {% load staticpages_tags %}
+    {% load yasp %}
 
     {% get_pages_from_menu 'about-us' as about_us_pages %}
 
@@ -63,7 +63,7 @@ To get a specific page:
 
 .. code-block:: django
 
-    {% load staticpages_tags %}
+    {% load yasp %}
 
     {% get_page 'about-us/vision' as vision %}
     Title: {{vision.title}}
@@ -72,7 +72,7 @@ To get a URL to a specific page:
 
 .. code-block:: django
 
-    {% load staticpages_tags %}
+    {% load yasp %}
 
     <a href="{% get_page_url 'about-us/vision' %}">Our vision</a>
 

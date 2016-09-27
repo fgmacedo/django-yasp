@@ -2,15 +2,15 @@
 # -*- coding: utf-8 -*-
 
 """
-test_django-staticpages
+test_django-yasp
 ------------
 
-Tests for `django-staticpages` models module.
+Tests for `django-yasp` models module.
 """
 
 from django.test import TestCase
 
-from staticpages import models
+from yasp import models
 
 
 class TestStaticpages(TestCase):

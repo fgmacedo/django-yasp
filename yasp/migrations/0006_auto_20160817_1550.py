@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('staticpages', '0005_auto_20160801_1652'),
+        ('yasp', '0005_auto_20160801_1652'),
     ]
 
     operations = [
@@ -39,7 +39,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='flatpage',
             name='template_name',
-            field=models.CharField(blank=True, help_text="Exemplo: 'flatpages/contact_page.html'. Se n\xe3o for informado, o sistema utilizar\xe1 o padr\xe3o 'staticpages/default.html'.", max_length=70, verbose_name='nome do template'),
+            field=models.CharField(blank=True, help_text="Exemplo: 'flatpages/contact_page.html'. Se n\xe3o for informado, o sistema utilizar\xe1 o padr\xe3o 'yasp/default.html'.", max_length=70, verbose_name='nome do template'),
         ),
         migrations.AlterField(
             model_name='flatpage',

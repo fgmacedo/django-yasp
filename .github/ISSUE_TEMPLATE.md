@@ -1,4 +1,4 @@
-* django-staticpages version:
+* django-yasp version:
 * Django version:
 * Python version:
 * Operating System:

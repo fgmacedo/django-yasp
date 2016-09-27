@@ -9,13 +9,13 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('staticpages', '0006_auto_20160817_1550'),
+        ('yasp', '0006_auto_20160817_1550'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='flatpage',
             name='menu',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='staticpages.Menu', verbose_name='menu'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='yasp.Menu', verbose_name='menu'),
         ),
     ]

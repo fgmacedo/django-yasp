@@ -13,7 +13,7 @@ def get_pages_from_menu(menu_slug):
     """
     Usage:
 
-        {% load staticpages_tags %}
+        {% load yasp %}
 
         {% get_pages_from_menu 'about-us' as about_us_pages %}
 
@@ -35,7 +35,7 @@ def get_page(slug):
     """
     Usage:
 
-        {% load staticpages_tags %}
+        {% load yasp %}
 
         {% get_page 'about-us/vision' as vision %}
         Title: {{vision.title}}
@@ -74,7 +74,7 @@ def get_page_url(slug):
     """
     Usage:
 
-        {% load staticpages_tags %}
+        {% load yasp %}
 
         <a href="{% get_page_url 'about-us/vision' %}">Our vision</a>
         ...

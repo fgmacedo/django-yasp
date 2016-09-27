@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=255, verbose_name='title')),
                 ('slug', models.SlugField(max_length=255, verbose_name='slug')),
                 ('content', models.TextField(verbose_name='content')),
-                ('template_name', models.CharField(blank=True, help_text="Example: 'flatpages/contact_page.html'. If this isn't provided, the system will use 'staticpages/default.html'.", max_length=70, verbose_name='template name')),
+                ('template_name', models.CharField(blank=True, help_text="Example: 'yasp/contact_page.html'. If this isn't provided, the system will use 'yasp/default.html'.", max_length=70, verbose_name='template name')),
                 ('active', models.BooleanField(default=True, verbose_name='ativo')),
                 ('ordering', models.PositiveIntegerField(blank=True, null=True, verbose_name='ordering')),
                 ('updated_on', models.DateTimeField(auto_now=True, verbose_name='updated on')),
@@ -44,6 +44,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='flatpage',
             name='menu',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='staticpages.Menu'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='yasp.Menu'),
         ),
     ]

@@ -63,8 +63,8 @@ class FlatPage(models.Model):
         max_length=70,
         blank=True,
         help_text=_(
-            "Example: 'staticpages/contact_page.html'. If this isn't provided, "
-            "the system will use 'staticpages/default.html'."
+            "Example: 'yasp/contact_page.html'. If this isn't provided, "
+            "the system will use 'yasp/default.html'."
         ),
     )
     image = get_image_field(_('image'))
@@ -90,7 +90,7 @@ class FlatPage(models.Model):
         if self.link:
             return self.link
         menu_slug = self.menu.slug if self.menu else ''
-        return reverse('staticpages:page', args=[menu_slug, self.slug])
+        return reverse('yasp:page', args=[menu_slug, self.slug])
 
     @property
     def description(self):

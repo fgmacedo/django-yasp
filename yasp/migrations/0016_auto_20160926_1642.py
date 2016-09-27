@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('staticpages', '0015_auto_20160926_1522'),
+        ('yasp', '0015_auto_20160926_1522'),
     ]
 
     operations = [
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='flatpage',
             name='menu',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='pages', to='staticpages.Menu', verbose_name='menu'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='pages', to='yasp.Menu', verbose_name='menu'),
         ),
         migrations.AlterField(
             model_name='flatpage',
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='flatpage',
             name='template_name',
-            field=models.CharField(blank=True, help_text="Example: 'staticpages/contact_page.html'. If this isn't provided, the system will use 'staticpages/default.html'.", max_length=70, verbose_name='template name'),
+            field=models.CharField(blank=True, help_text="Example: 'yasp/contact_page.html'. If this isn't provided, the system will use 'yasp/default.html'.", max_length=70, verbose_name='template name'),
         ),
         migrations.AlterField(
             model_name='flatpage',

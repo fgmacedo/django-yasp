@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('staticpages', '0012_auto_20160902_1725'),
+        ('yasp', '0012_auto_20160902_1725'),
     ]
 
     operations = [

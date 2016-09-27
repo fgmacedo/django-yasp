@@ -31,8 +31,8 @@ def page(request, menu_slug='', page_slug='', url=''):
     content = get_object_or_404(FlatPage, menu=menu, slug=page_slug)
 
     templates = [
-        'staticpages/{}/{}.html'.format(menu_slug, page_slug),
-        'staticpages/default.html',
+        'yasp/{}/{}.html'.format(menu_slug, page_slug),
+        'yasp/default.html',
     ]
     if content.template_name:
         templates.insert(0, content.template_name)

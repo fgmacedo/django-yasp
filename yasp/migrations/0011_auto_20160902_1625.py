@@ -9,7 +9,7 @@ import filebrowser.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('staticpages', '0010_auto_20160902_1129'),
+        ('yasp', '0010_auto_20160902_1129'),
     ]
 
     operations = [
@@ -26,6 +26,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='flatpage',
             name='template_name',
-            field=models.CharField(blank=True, help_text="Example: 'staticpages/contact_page.html'. If this isn't provided, the system will use 'staticpages/default.html'.", max_length=70, verbose_name='nome do template'),
+            field=models.CharField(blank=True, help_text="Example: 'yasp/contact_page.html'. If this isn't provided, the system will use 'yasp/default.html'.", max_length=70, verbose_name='nome do template'),
         ),
     ]

@@ -5,5 +5,5 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class StaticPagesConfig(AppConfig):
-    name = 'staticpages'
+    name = 'yasp'
     verbose_name = _('Static pages')
