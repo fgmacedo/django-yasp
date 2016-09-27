@@ -20,7 +20,7 @@ Quickstart
 
 Install django-yasp::
 
-    pip install -e git://github.com/fgmacedo/django-yasp.git@v0.2.0#egg=django-yasp
+    pip install django-yasp
 
 Include it on INSTALLED_APPS::
 
