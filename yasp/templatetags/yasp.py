@@ -43,7 +43,8 @@ def get_page(slug):
     """
     slugs = slug.split('/')
     if len(slugs) not in [1, 2]:
-        raise ValueError('Param must be "menu-slug/page-slug" or "page-slug". Invalid: {}'.format(slug))
+        raise ValueError(
+            'Param must be "menu-slug/page-slug" or "page-slug". Invalid: {}'.format(slug))
 
     if len(slugs) == 2:
         menu_slug, page_slug = slugs
@@ -56,7 +57,8 @@ def get_page(slug):
 
     if not page:
         if menu_slug:
-            menu, created = Menu.objects.get_or_create(slug=menu_slug, defaults={'name': menu_slug})
+            menu, created = Menu.objects.get_or_create(
+                slug=menu_slug, defaults={'name': menu_slug})
         else:
             menu = None
         page, created = FlatPage.objects.get_or_create(
