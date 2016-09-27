@@ -1,8 +1,9 @@
-django>=1.9.6
+Django>=1.9.10
 coverage==4.2
-mock>=1.0.1
+mock>=2.0.0
 flake8>=2.1.0
-tox>=1.7.0
+tox>=2.3.1
 
-
-# Additional test requirements go here
+pytest==3.0.2
+pytest-django==3.0.0
+pytest-watch==4.1.0

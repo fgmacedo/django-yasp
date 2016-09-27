@@ -89,8 +89,9 @@ class FlatPage(models.Model):
     def get_absolute_url(self):
         if self.link:
             return self.link
-        menu_slug = self.menu.slug if self.menu else ''
-        return reverse('yasp:page', args=[menu_slug, self.slug])
+        if self.menu:
+            return reverse('yasp:page', args=[self.menu.slug, self.slug])
+        return reverse('yasp:page', args=[self.slug])
 
     @property
     def description(self):

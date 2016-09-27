@@ -1,6 +1,6 @@
-=============================
+===========
 django-yasp
-=============================
+===========
 
 .. image:: https://badge.fury.io/py/django-yasp.png
     :target: https://badge.fury.io/py/django-yasp
@@ -42,9 +42,24 @@ Add to middlewares:
     ]
 
 
-From now on, each page that you create on Admin will be acce
+Features
+--------
 
-Then use it in a template.
+Link to static pages
+====================
+
+Static pages in **yasp** are automatic routed to a slug that you specify when
+creating your page. Your static pages can be grouped in a `Menu`_ object. So
+your urls can be in the form `menu-slug/page-slug` or `page-slug` (pages
+without a relation to `Menu`_.
+
+To create a link to static pages, there are some useful templatetags, as follows.
+
+.. note::
+
+    All menus/pages that are used in a templatetag will be automatically
+    created if they don't exist.
+
 
 To load all pages inside a menu:
 
@@ -52,12 +67,14 @@ To load all pages inside a menu:
 
     {% load yasp %}
 
-    {% get_pages_from_menu 'about-us' as about_us_pages %}
+    {% get_pages_from_menu 'about-us' as pages %}
 
-    {% for i in about_us_pages %}
-        Title: {{i.title}}
-        ...
-    {% endfor%}
+    <ul>
+      {% for page in pages %}
+        <li><a href="{{page.get_absolute_url}}">{{page.title}}</a></li>
+      {% endfor %}
+    </ul>
+
 
 To get a specific page:
 
@@ -65,8 +82,11 @@ To get a specific page:
 
     {% load yasp %}
 
-    {% get_page 'about-us/vision' as vision %}
-    Title: {{vision.title}}
+    {% get_page 'about-us/vision' as page %} {# Page 'vision' related to a menu 'about-us' #}
+    <a href="{{page.get_absolute_url}}">{{page.title}}</a>
+
+    {% get_page 'contact' as page %} {# Page without a menu. #}
+    <a href="{{page.get_absolute_url}}">{{page.title}}</a>
 
 To get a URL to a specific page:
 
@@ -77,12 +97,71 @@ To get a URL to a specific page:
     <a href="{% get_page_url 'about-us/vision' %}">Our vision</a>
 
 
-Features
---------
+Custom templates
+================
 
-* Build menus from static pages.
-* Get a page from his slug.
-* Redirect to a link.
+Static pages will be rendered using the `yasp/default.html` template by
+default.
+
+You can customize the template used to render a page by placing a template with
+the same slug of the page, or directly on the `template` field on Admin.
+
+Template path resolution order:
+
+    * The "Template" field of your page, if provided.
+    * 'yasp/{menu_slug}/{page_slug}.html'
+    * 'yasp/{}.html'.format(page_slug)
+    * 'yasp/default.html'
+
+
+Context of a static page template:
+
+    :menu:  The `Menu`_ object.
+    :content: The `FlatPage`_ object.
+    :object: Alias to `content`.
+
+
+External link
+=============
+
+You can use a static page instance to link to an external page.
+
+Example:
+
+    >>> from yasp.models import Menu, FlatPage
+    >>> menu = Menu.objects.create(name='About us', slug='about-us')
+    >>> page = FlatPage.objects.create(menu=menu, slug='google', link='http://google.com', title='Google')
+    >>> '<a href="{}">{}</a>'.format(page.get_absolute_url(), page.title)
+    '<a href="http://google.com">Google Inc.</a>'
+    >>> vision = FlatPage.objects.create(menu=menu, slug='vision', title='Vision')
+    >>> '<a href="{}">{}</a>'.format(vision.get_absolute_url(), vision.title)
+    '<a href="/about-us/vision">Vision</a>'
+
+This construction is can be specially useful when you're build a navbar in
+templates:
+
+.. code-block:: django
+
+    {% load yasp %}
+    {% get_pages_from_menu 'about-us' as pages %}
+
+    <ul>
+      {% for page in pages %}
+        <li><a href="{{page.get_absolute_url}}">{{page.title}}</a></li>
+      {% endfor %}
+    </ul>
+
+
+Will render as:
+
+.. code-block:: html
+
+    <ul>
+        <li><a href="http://google.com">Google</a></li>
+        <li><a href="/about-us/vision">Vision</a></li>
+    </ul>
+
+
 
 Running Tests
 --------------
@@ -93,4 +172,4 @@ Does the code actually work?
 
     source <YOURVIRTUALENV>/bin/activate
     (myenv) $ pip install -r requirements_test.txt
-    (myenv) $ python runtests.py
+    (myenv) $ py.test

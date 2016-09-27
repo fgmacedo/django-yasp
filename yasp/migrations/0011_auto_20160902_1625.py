@@ -3,7 +3,11 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import filebrowser.fields
+
+try:
+    from filebrowser.fields import FileBrowseField as ImageField
+except:
+    ImageField = models.ImageField
 
 
 class Migration(migrations.Migration):
@@ -16,7 +20,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='flatpage',
             name='image',
-            field=filebrowser.fields.FileBrowseField(blank=True, max_length=250, null=True, verbose_name='imagem'),
+            field=ImageField(blank=True, max_length=250, null=True, verbose_name='imagem'),
         ),
         migrations.AddField(
             model_name='flatpage',

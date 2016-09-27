@@ -32,6 +32,7 @@ def page(request, menu_slug='', page_slug='', url=''):
 
     templates = [
         'yasp/{}/{}.html'.format(menu_slug, page_slug),
+        'yasp/{}.html'.format(page_slug),
         'yasp/default.html',
     ]
     if content.template_name:
