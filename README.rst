@@ -123,6 +123,8 @@ You can use a static page instance to link to an external page.
 
 Example:
 
+.. code-block:: pycon
+
     >>> from yasp.models import Menu, FlatPage
     >>> menu = Menu.objects.create(name='About us', slug='about-us')
     >>> page = FlatPage.objects.create(menu=menu, slug='google', link='http://google.com', title='Google')
