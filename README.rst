@@ -10,11 +10,6 @@ django-yasp
 
 Another static page Django app.
 
-Documentation
--------------
-
-The full documentation is at https://django-yasp.readthedocs.org.
-
 Quickstart
 ----------
 
@@ -48,12 +43,12 @@ Features
 Link to static pages
 ====================
 
-Static pages in **yasp** are automatic routed to a slug that you specify when
+Static pages in **yasp** are automatically routed to a slug that you specify when
 creating your page. Your static pages can be grouped in a `Menu`_ object. So
-your urls can be in the form `menu-slug/page-slug` or `page-slug` (pages
-without a relation to `Menu`_.
+your urls can be in the form ``menu-slug/page-slug`` or ``page-slug`` (pages
+without a relation to `Menu`_).
 
-To create a link to static pages, there are some useful templatetags, as follows.
+To create links to static pages there are useful templatetags, as follows.
 
 .. note::
 
@@ -100,11 +95,11 @@ To get a URL to a specific page:
 Custom templates
 ================
 
-Static pages will be rendered using the `yasp/default.html` template by
+Static pages will be rendered using the ``yasp/default.html`` template by
 default.
 
 You can customize the template used to render a page by placing a template with
-the same slug of the page, or directly on the `template` field on Admin.
+the same slug of the page, or directly on the ``template`` field on Admin.
 
 Template path resolution order:
 
