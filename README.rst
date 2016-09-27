@@ -103,17 +103,17 @@ the same slug of the page, or directly on the ``template`` field on Admin.
 
 Template path resolution order:
 
-    * The "Template" field of your page, if provided.
-    * ``yasp/{menu_slug}/{page_slug}.html``
-    * ``yasp/{page_slug}.html``
-    * ``yasp/default.html``
+* The path in the ``template`` field of your page, if provided.
+* ``yasp/{menu_slug}/{page_slug}.html``
+* ``yasp/{page_slug}.html``
+* ``yasp/default.html``
 
 
 Context of a static page template:
 
-    :menu:  The `Menu`_ object.
-    :content: The `FlatPage`_ object.
-    :object: Alias to `content`.
+:menu:  The `Menu`_ object.
+:content: The `FlatPage`_ object.
+:object: Alias to `content`.
 
 
 External link
@@ -130,6 +130,7 @@ Example:
     >>> page = FlatPage.objects.create(menu=menu, slug='google', link='http://google.com', title='Google')
     >>> '<a href="{}">{}</a>'.format(page.get_absolute_url(), page.title)
     '<a href="http://google.com">Google Inc.</a>'
+
     >>> vision = FlatPage.objects.create(menu=menu, slug='vision', title='Vision')
     >>> '<a href="{}">{}</a>'.format(vision.get_absolute_url(), vision.title)
     '<a href="/about-us/vision">Vision</a>'
