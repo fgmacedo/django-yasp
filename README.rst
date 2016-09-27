@@ -20,7 +20,9 @@ Quickstart
 
 Install django-staticpages::
 
-    pip install django-staticpages
+    .. pip install django-staticpages
+
+    pip install -e git://github.com/fgmacedo/django-staticpages.git@v0.2.0#egg=django-staticpages
 
 Include it on INSTALLED_APPS::
 
