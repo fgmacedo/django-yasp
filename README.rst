@@ -104,9 +104,9 @@ the same slug of the page, or directly on the ``template`` field on Admin.
 Template path resolution order:
 
     * The "Template" field of your page, if provided.
-    * 'yasp/{menu_slug}/{page_slug}.html'
-    * 'yasp/{}.html'.format(page_slug)
-    * 'yasp/default.html'
+    * ``yasp/{menu_slug}/{page_slug}.html``
+    * ``yasp/{page_slug}.html``
+    * ``yasp/default.html``
 
 
 Context of a static page template:
