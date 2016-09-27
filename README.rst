@@ -18,9 +18,9 @@ The full documentation is at https://django-staticpages.readthedocs.org.
 Quickstart
 ----------
 
-Install django-staticpages::
+.. pip install django-staticpages
 
-    .. pip install django-staticpages
+Install django-staticpages::
 
     pip install -e git://github.com/fgmacedo/django-staticpages.git@v0.2.0#egg=django-staticpages
 
