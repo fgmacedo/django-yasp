@@ -10,6 +10,19 @@ django-yasp
 
 Another static page Django app.
 
+Main features:
+
+* It does not use the ``sites`` app.
+* Allows grouping pages by a menu.
+* Optional template overriding by page.
+* Template tags to get a page or a group of pages by menu.
+* Page has an image field (optional).
+* Page itens can specify a link (redirect).
+* Pages can be orderable (if `django-admin-sortable2`_ is installed).
+
+
+.. _django-admin-sortable2: https://github.com/jrief/django-admin-sortable2
+
 Quickstart
 ----------
 
