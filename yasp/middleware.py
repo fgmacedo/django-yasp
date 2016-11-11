@@ -1,10 +1,11 @@
 from django.conf import settings
 from django.http import Http404
+from django.utils.deprecation import MiddlewareMixin
 
 from .views import page
 
 
-class StaticPageFallbackMiddleware(object):
+class StaticPageFallbackMiddleware(MiddlewareMixin):
     "Like the Django's flatpage middleware"
 
     def process_response(self, request, response):
