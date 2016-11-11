@@ -32,7 +32,11 @@ Install django-yasp::
 
 Include it on INSTALLED_APPS::
 
-    'yasp',
+    INSTALLED_APPS = [
+        ...
+        'yasp',
+    ]
+
 
 Add to urls:
 
